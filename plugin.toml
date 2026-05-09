@@ -1,0 +1,17 @@
+[plugin]
+name = "fledge-plugin-bridge-client"
+version = "0.1.0"
+description = "Bridge client — read/write/exec on connected bridge sessions via corvid-agent API"
+author = "CorvidLabs"
+
+[[commands]]
+name = "bridge-client"
+description = "Interact with connected bridge sessions (read files, write files, list dirs, exec commands)"
+binary = "bin/fledge-plugin-bridge-client"
+
+[hooks]
+
+[capabilities]
+exec = false
+store = false
+metadata = false

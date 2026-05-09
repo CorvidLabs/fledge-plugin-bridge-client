@@ -1,0 +1,316 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CORVID_URL="${CORVID_URL:-http://localhost:3000}"
+CORVID_TOKEN="${CORVID_TOKEN:-}"
+
+usage() {
+  cat <<'USAGE'
+fledge bridge-client — interact with connected bridge sessions
+
+USAGE:
+  fledge bridge-client sessions                          List connected sessions
+  fledge bridge-client ping    [--session <id>]          Ping a session
+  fledge bridge-client read    <path> [--session <id>]   Read a remote file
+  fledge bridge-client write   <path> [--session <id>]   Write to a remote file (reads stdin)
+  fledge bridge-client ls      <path> [--session <id>]   List a remote directory
+  fledge bridge-client exec    <cmd>  [--session <id>]   Execute a command remotely
+                                      [--cwd <dir>]
+
+ENVIRONMENT:
+  CORVID_URL     Server URL (default: http://localhost:3000)
+  CORVID_TOKEN   Auth token for the API
+
+OPTIONS:
+  --session <id>   Target session ID (auto-selected if only one session exists)
+  --json           Output raw JSON response
+  -h, --help       Show this help
+USAGE
+  exit 0
+}
+
+die() { echo "error: $*" >&2; exit 1; }
+
+api() {
+  local method="$1" path="$2"
+  shift 2
+  local -a curl_args=(-s -f -X "$method" "${CORVID_URL}${path}")
+  [[ -n "$CORVID_TOKEN" ]] && curl_args+=(-H "Authorization: Bearer $CORVID_TOKEN")
+  curl_args+=("$@")
+  curl "${curl_args[@]}" 2>/dev/null || die "API request failed: $method $path (is corvid-agent running at $CORVID_URL?)"
+}
+
+resolve_session() {
+  local explicit_session="$1"
+  if [[ -n "$explicit_session" ]]; then
+    echo "$explicit_session"
+    return
+  fi
+
+  local sessions_json
+  sessions_json=$(api GET "/api/bridge/sessions")
+  local count
+  count=$(echo "$sessions_json" | python3 -c "import json,sys; print(json.load(sys.stdin).get('count',0))" 2>/dev/null)
+
+  case "$count" in
+    0) die "no bridge sessions connected" ;;
+    1) echo "$sessions_json" | python3 -c "import json,sys; print(json.load(sys.stdin)['sessions'][0]['sessionId'])" ;;
+    *) echo "Multiple sessions connected — specify one with --session <id>:" >&2
+       echo "$sessions_json" | python3 -c "
+import json, sys
+data = json.load(sys.stdin)
+for s in data['sessions']:
+    label = s.get('label', 'unlabeled')
+    print(f\"  {s['sessionId']}  ({label})\")
+" >&2
+       exit 1 ;;
+  esac
+}
+
+bridge_request() {
+  local session_id="$1"
+  local payload="$2"
+  api POST "/api/bridge/sessions/${session_id}/request" \
+    -H "Content-Type: application/json" \
+    -d "$payload"
+}
+
+cmd_sessions() {
+  local raw_json=false
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --json) raw_json=true; shift ;;
+      *) shift ;;
+    esac
+  done
+
+  local result
+  result=$(api GET "/api/bridge/sessions")
+
+  if $raw_json; then
+    echo "$result"
+    return
+  fi
+
+  echo "$result" | python3 -c "
+import json, sys
+data = json.load(sys.stdin)
+if data['count'] == 0:
+    print('No bridge sessions connected.')
+    sys.exit(0)
+print(f\"{data['count']} session(s) connected:\")
+print()
+for s in data['sessions']:
+    label = s.get('label', 'unlabeled')
+    caps = ', '.join(s.get('capabilities', []))
+    print(f\"  {s['sessionId']}\")
+    print(f\"    Label:        {label}\")
+    if caps:
+        print(f\"    Capabilities: {caps}\")
+    print(f\"    Connected:    {s.get('connectedAt', '?')}\")
+    print(f\"    Last active:  {s.get('lastActivity', '?')}\")
+    print()
+"
+}
+
+cmd_ping() {
+  local session_id="" raw_json=false
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --session) session_id="$2"; shift 2 ;;
+      --json) raw_json=true; shift ;;
+      *) shift ;;
+    esac
+  done
+
+  session_id=$(resolve_session "$session_id")
+  local result
+  result=$(bridge_request "$session_id" '{"request_type":"ping"}')
+
+  if $raw_json; then
+    echo "$result"
+  else
+    echo "pong (session: $session_id)"
+  fi
+}
+
+cmd_read() {
+  local filepath="" session_id="" raw_json=false
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --session) session_id="$2"; shift 2 ;;
+      --json) raw_json=true; shift ;;
+      -*) die "unknown option: $1" ;;
+      *) filepath="$1"; shift ;;
+    esac
+  done
+
+  [[ -z "$filepath" ]] && die "usage: fledge bridge-client read <path> [--session <id>]"
+  session_id=$(resolve_session "$session_id")
+
+  local payload
+  payload=$(python3 -c "import json; print(json.dumps({'request_type':'file.read','path':$(python3 -c "import json; print(json.dumps('$filepath'))")}))")
+
+  local result
+  result=$(bridge_request "$session_id" "$payload")
+
+  if $raw_json; then
+    echo "$result"
+  else
+    echo "$result" | python3 -c "
+import json, sys
+data = json.load(sys.stdin)
+if 'error' in data:
+    print(f\"error: {data['error']}\", file=sys.stderr)
+    sys.exit(1)
+content = data.get('content', data.get('result', ''))
+print(content)
+"
+  fi
+}
+
+cmd_write() {
+  local filepath="" session_id="" raw_json=false
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --session) session_id="$2"; shift 2 ;;
+      --json) raw_json=true; shift ;;
+      -*) die "unknown option: $1" ;;
+      *) filepath="$1"; shift ;;
+    esac
+  done
+
+  [[ -z "$filepath" ]] && die "usage: fledge bridge-client write <path> [--session <id>] < content"
+
+  local content
+  content=$(cat)
+
+  session_id=$(resolve_session "$session_id")
+
+  local payload
+  payload=$(python3 -c "
+import json, sys
+print(json.dumps({
+    'request_type': 'file.write',
+    'path': sys.argv[1],
+    'content': sys.argv[2]
+}))
+" "$filepath" "$content")
+
+  local result
+  result=$(bridge_request "$session_id" "$payload")
+
+  if $raw_json; then
+    echo "$result"
+  else
+    echo "wrote $filepath"
+  fi
+}
+
+cmd_ls() {
+  local dirpath="" session_id="" raw_json=false
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --session) session_id="$2"; shift 2 ;;
+      --json) raw_json=true; shift ;;
+      -*) die "unknown option: $1" ;;
+      *) dirpath="$1"; shift ;;
+    esac
+  done
+
+  [[ -z "$dirpath" ]] && die "usage: fledge bridge-client ls <path> [--session <id>]"
+  session_id=$(resolve_session "$session_id")
+
+  local payload
+  payload=$(python3 -c "import json; print(json.dumps({'request_type':'file.list','path':$(python3 -c "import json; print(json.dumps('$dirpath'))")}))")
+
+  local result
+  result=$(bridge_request "$session_id" "$payload")
+
+  if $raw_json; then
+    echo "$result"
+  else
+    echo "$result" | python3 -c "
+import json, sys
+data = json.load(sys.stdin)
+if 'error' in data:
+    print(f\"error: {data['error']}\", file=sys.stderr)
+    sys.exit(1)
+entries = data.get('entries', data.get('files', data.get('result', [])))
+if isinstance(entries, list):
+    for e in entries:
+        if isinstance(e, dict):
+            name = e.get('name', '?')
+            kind = e.get('type', '')
+            suffix = '/' if kind == 'directory' else ''
+            print(f\"{name}{suffix}\")
+        else:
+            print(e)
+elif isinstance(entries, str):
+    print(entries)
+"
+  fi
+}
+
+cmd_exec() {
+  local command="" session_id="" cwd="" raw_json=false
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --session) session_id="$2"; shift 2 ;;
+      --cwd) cwd="$2"; shift 2 ;;
+      --json) raw_json=true; shift ;;
+      -*) die "unknown option: $1" ;;
+      *) command="$1"; shift ;;
+    esac
+  done
+
+  [[ -z "$command" ]] && die "usage: fledge bridge-client exec <command> [--session <id>] [--cwd <dir>]"
+  session_id=$(resolve_session "$session_id")
+
+  local payload
+  payload=$(python3 -c "
+import json, sys
+obj = {'request_type': 'exec', 'command': sys.argv[1]}
+if sys.argv[2]:
+    obj['cwd'] = sys.argv[2]
+print(json.dumps(obj))
+" "$command" "$cwd")
+
+  local result
+  result=$(bridge_request "$session_id" "$payload")
+
+  if $raw_json; then
+    echo "$result"
+  else
+    echo "$result" | python3 -c "
+import json, sys
+data = json.load(sys.stdin)
+if 'error' in data:
+    print(f\"error: {data['error']}\", file=sys.stderr)
+    sys.exit(1)
+stdout = data.get('stdout', '')
+stderr = data.get('stderr', '')
+code = data.get('exitCode', data.get('exit_code', 0))
+if stdout:
+    print(stdout)
+if stderr:
+    print(stderr, file=sys.stderr)
+sys.exit(int(code) if code else 0)
+"
+  fi
+}
+
+# --- main ---
+
+[[ $# -eq 0 ]] && usage
+
+case "$1" in
+  -h|--help|help)  usage ;;
+  sessions)        shift; cmd_sessions "$@" ;;
+  ping)            shift; cmd_ping "$@" ;;
+  read)            shift; cmd_read "$@" ;;
+  write)           shift; cmd_write "$@" ;;
+  ls|list)         shift; cmd_ls "$@" ;;
+  exec)            shift; cmd_exec "$@" ;;
+  *)               die "unknown subcommand: $1 (try --help)" ;;
+esac
