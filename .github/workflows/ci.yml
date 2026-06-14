@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - bin/**
+      - plugin.toml
+      - .github/workflows/ci.yml
+  pull_request:
+    branches: [main]
+    paths:
+      - bin/**
+      - plugin.toml
+      - .github/workflows/ci.yml
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  shell:
+    name: ShellCheck + smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: ShellCheck bin scripts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+          shellcheck bin/*
+
+      - name: --help smoke test
+        run: |
+          for script in bin/*; do
+            [[ -x "$script" ]] || continue
+            echo "::group::$script --help"
+            "$script" --help
+            echo "::endgroup::"
+          done
