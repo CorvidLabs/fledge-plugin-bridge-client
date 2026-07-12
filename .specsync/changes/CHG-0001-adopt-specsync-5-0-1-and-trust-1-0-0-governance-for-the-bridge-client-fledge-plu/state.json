@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "CHG-0001-adopt-specsync-5-0-1-and-trust-1-0-0-governance-for-the-bridge-client-fledge-plu",
+  "slug": "adopt-specsync-5-0-1-and-trust-1-0-0-governance-for-the-bridge-client-fledge-plu",
+  "title": "Adopt SpecSync 5.0.1 and Trust 1.0.0 governance for the Bridge client Fledge plugin",
+  "description": "Adopt SpecSync 5.0.1 and Trust 1.0.0 governance for the Bridge client Fledge plugin",
+  "kind": "migration",
+  "state": "draft",
+  "base_commit": "1ae7ccdb260dc60856b2339f5a7e7efe4f88e029",
+  "created_at": 1783875139,
+  "updated_at": 1783875147,
+  "affected_specs": [
+    "bridge-client"
+  ],
+  "affected_paths": [
+    "bin/",
+    ".github/",
+    ".specsync/",
+    "specs/",
+    ".trust.toml",
+    "fledge.toml"
+  ],
+  "no_spec_change": false,
+  "no_spec_change_rationale": null,
+  "acceptance_criteria": [
+    "SpecSync strict check passes at advisory threshold 0 without false coverage claims; all four integrations report installed; Trust doctor and verification pass; ShellCheck and executable help smoke remain green"
+  ],
+  "selected_artifacts": [
+    "context",
+    "research",
+    "design",
+    "plan",
+    "tasks",
+    "testing",
+    "docs"
+  ],
+  "dependencies": [],
+  "answers": {
+    "architecture_risk": "yes",
+    "public_contract": "no"
+  }
+}

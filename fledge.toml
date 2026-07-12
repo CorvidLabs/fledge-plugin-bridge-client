@@ -1,0 +1,8 @@
+# fledge.toml: project task definitions
+[tasks]
+lint = "shellcheck bin/*"
+smoke = "bin/fledge-plugin-bridge-client --help"
+
+[lanes.verify]
+description = "Lint and smoke-test the Bridge client plugin"
+steps = ["lint", "smoke"]

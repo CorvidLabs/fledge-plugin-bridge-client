@@ -1,0 +1,5 @@
+[registry]
+name = "fledge-plugin-bridge-client-trust-wave3"
+
+[specs]
+bridge-client = "specs/bridge-client/bridge-client.spec.md"
