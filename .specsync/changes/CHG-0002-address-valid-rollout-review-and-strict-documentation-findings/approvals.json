@@ -34,6 +34,13 @@
       "timestamp": 1783953167,
       "digest": "2b26ff9e67bcfb22f7bece6c047caa36bef3e32024cf339dd21345cfd0da2091",
       "note": "Fresh closing approval after re-verification against the preceding accepted contract correction."
+    },
+    {
+      "gate": "definition",
+      "actor": "user:0xLeif",
+      "timestamp": 1783957192,
+      "digest": "6b53827f15fe0ff1932eea2b28b4cb83697d45dcaecca0a8c074aa3478a88e0a",
+      "note": "Fresh definition approval under explicit audit-risk authorization; prior approval history preserved and current corrected artifacts reviewed."
     }
   ]
 }

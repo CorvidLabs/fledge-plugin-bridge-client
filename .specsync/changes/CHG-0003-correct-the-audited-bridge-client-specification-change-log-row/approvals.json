@@ -1,0 +1,11 @@
+{
+  "approvals": [
+    {
+      "gate": "definition",
+      "actor": "user:0xLeif",
+      "timestamp": 1783957192,
+      "digest": "c0be6adf79f7e98851cc7f5fd82abef62bfbe0d59fc898b6fcab23627bf07f8c",
+      "note": "Fresh definition approval under explicit audit-risk authorization; prior approval history preserved and current corrected artifacts reviewed."
+    }
+  ]
+}

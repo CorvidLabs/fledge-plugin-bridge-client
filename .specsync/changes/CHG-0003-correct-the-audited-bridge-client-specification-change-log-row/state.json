@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "id": "CHG-0003-correct-the-audited-bridge-client-specification-change-log-row",
+  "slug": "correct-the-audited-bridge-client-specification-change-log-row",
+  "title": "Correct the audited Bridge client specification change-log row",
+  "description": "Correct the audited Bridge client specification change-log row",
+  "kind": "documentation",
+  "state": "implementing",
+  "base_commit": "b201d3c3d0ac67b360ac44e71c24d88db33ad4d3",
+  "created_at": 1783954515,
+  "updated_at": 1783957192,
+  "affected_specs": [
+    "bridge-client"
+  ],
+  "affected_paths": [
+    "specs/bridge-client/bridge-client.spec.md"
+  ],
+  "no_spec_change": false,
+  "no_spec_change_rationale": null,
+  "acceptance_criteria": [
+    "The Bridge client Change Log row has all three table columns and records version 2 with the existing date and change description."
+  ],
+  "selected_artifacts": [
+    "context",
+    "docs"
+  ],
+  "dependencies": [],
+  "answers": {
+    "architecture_risk": "no",
+    "public_contract": "no"
+  }
+}
