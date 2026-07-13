@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "id": "CHG-0002-address-valid-rollout-review-and-strict-documentation-findings",
+  "slug": "address-valid-rollout-review-and-strict-documentation-findings",
+  "title": "Address valid rollout review and strict documentation findings",
+  "description": "Address valid rollout review and strict documentation findings",
+  "kind": "documentation",
+  "state": "accepted",
+  "base_commit": "de20649e49bf2fc61c27629410ff1a0253bac8b1",
+  "created_at": 1783929738,
+  "updated_at": 1783948261,
+  "affected_specs": [],
+  "affected_paths": [
+    ".claude/",
+    ".codex/",
+    ".cursor/"
+  ],
+  "no_spec_change": true,
+  "no_spec_change_rationale": "Generated agent guidance places companion-file instructions under the correct section without changing Bridge client behavior.",
+  "acceptance_criteria": [
+    "Generated guidance is structurally correct",
+    "review findings are addressed",
+    "and Bridge client ShellCheck and smoke verification remain green."
+  ],
+  "selected_artifacts": [
+    "context",
+    "docs"
+  ],
+  "dependencies": [],
+  "answers": {
+    "architecture_risk": "no",
+    "public_contract": "no"
+  }
+}
