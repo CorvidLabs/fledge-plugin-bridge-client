@@ -13,6 +13,13 @@
       "timestamp": 1783957606,
       "digest": "1b3687fc4af3098214e53ee66573dd0b331254a3076a85de33c845aadd48f5da",
       "note": "Fresh definition approval after truthful metadata-only no-spec reclassification; no behavior or requirement change is claimed."
+    },
+    {
+      "gate": "acceptance",
+      "actor": "user:0xLeif",
+      "timestamp": 1783957756,
+      "digest": "09126a9cfb40d2041671cfa5ce0ac1e9537aad6fe034785d5de3b6ca216efcc2",
+      "note": "Closing approval recorded after committed-head native verification of the audited no-semantic-change correction."
     }
   ]
 }

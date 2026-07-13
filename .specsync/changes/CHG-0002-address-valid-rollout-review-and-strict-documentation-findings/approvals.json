@@ -41,6 +41,13 @@
       "timestamp": 1783957192,
       "digest": "6b53827f15fe0ff1932eea2b28b4cb83697d45dcaecca0a8c074aa3478a88e0a",
       "note": "Fresh definition approval under explicit audit-risk authorization; prior approval history preserved and current corrected artifacts reviewed."
+    },
+    {
+      "gate": "acceptance",
+      "actor": "user:0xLeif",
+      "timestamp": 1783957928,
+      "digest": "b81a5ad42643f87fc50e89e9fbeaa261cf20d3ac665f295bbd7b741ed892a8ff",
+      "note": "Accepted after fresh verification against the final CHG3-corrected Bridge client working tree."
     }
   ]
 }
