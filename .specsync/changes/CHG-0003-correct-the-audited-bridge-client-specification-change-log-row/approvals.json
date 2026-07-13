@@ -34,6 +34,13 @@
       "timestamp": 1783958107,
       "digest": "c33d1d217752dd9f5b639de423b569e0c424beaa5d0f03990a8eebcef4240b03",
       "note": "Accepted after fresh verification against the final CHG1/CHG2-accepted Bridge client working tree."
+    },
+    {
+      "gate": "definition",
+      "actor": "user:0xLeif",
+      "timestamp": 1783958375,
+      "digest": "1b3687fc4af3098214e53ee66573dd0b331254a3076a85de33c845aadd48f5da",
+      "note": "Final definition approval after removing the malformed duplicate Change Log row; the correction is now complete and prior approval history is preserved."
     }
   ]
 }

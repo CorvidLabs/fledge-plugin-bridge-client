@@ -1,6 +1,6 @@
 ---
 id: CHG-0003-correct-the-audited-bridge-client-specification-change-log-row
-state: accepted
+state: implementing
 type: documentation
 base_commit: b201d3c3d0ac67b360ac44e71c24d88db33ad4d3
 ---
