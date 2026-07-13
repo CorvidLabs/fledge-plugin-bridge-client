@@ -5,10 +5,10 @@
   "title": "Adopt SpecSync 5.0.1 and Trust 1.0.0 governance for the Bridge client Fledge plugin",
   "description": "Adopt SpecSync 5.0.1 and Trust 1.0.0 governance for the Bridge client Fledge plugin",
   "kind": "migration",
-  "state": "implementing",
+  "state": "accepted",
   "base_commit": "1ae7ccdb260dc60856b2339f5a7e7efe4f88e029",
   "created_at": 1783875139,
-  "updated_at": 1783958468,
+  "updated_at": 1783958481,
   "affected_specs": [
     "bridge-client"
   ],

@@ -55,6 +55,13 @@
       "timestamp": 1783958468,
       "digest": "1b3687fc4af3098214e53ee66573dd0b331254a3076a85de33c845aadd48f5da",
       "note": "Fresh definition approval after the authorized state-only reopen against the final corrected Bridge workspace; prior approval history is preserved."
+    },
+    {
+      "gate": "acceptance",
+      "actor": "user:0xLeif",
+      "timestamp": 1783958491,
+      "digest": "f31bf5f2f82ce0c98c3dad2842569cf257c159034a6e4bda1a6097ef67e450a5",
+      "note": "Accepted after fresh verification of the corrected Bridge change-log table with the malformed duplicate removed."
     }
   ]
 }
