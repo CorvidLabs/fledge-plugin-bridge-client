@@ -19,11 +19,19 @@ The client SHALL support ping, file read, file write, directory list, and comman
 
 ### REQ-bridge-client-003
 
-The client SHALL JSON-encode user-controlled payload fields and optionally authenticate with a bearer token.
+The client SHALL JSON-encode write content, write paths, command text, and working directories and optionally authenticate with a bearer token.
+
+Acceptance Criteria
+- Write and exec payloads preserve quotes and other user-controlled text.
+- Authentication tokens are sent only in the authorization header and are not printed.
 
 ### REQ-bridge-client-004
 
-The client SHALL support raw JSON output and propagate remote command exit status.
+The client SHALL support raw JSON pass-through and SHALL propagate remote command exit status in formatted output mode.
+
+Acceptance Criteria
+- `exec --json` prints the server response after a successful HTTP request without interpreting its exit-code field.
+- Formatted `exec` exits with the remote command's reported status.
 
 ## Constraints
 

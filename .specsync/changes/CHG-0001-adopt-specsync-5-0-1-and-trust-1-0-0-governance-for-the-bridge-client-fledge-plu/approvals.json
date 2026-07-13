@@ -13,6 +13,55 @@
       "timestamp": 1783927475,
       "digest": "37523a27e9d0c91e4fab08eea9b604606d65e3c6a1d1e82365499d2d8bf40566",
       "note": "Accepted after repository-native verification under the user-authorized CorvidLabs organization-wide rollout."
+    },
+    {
+      "gate": "definition",
+      "actor": "user:0xLeif",
+      "timestamp": 1783952047,
+      "digest": "c09709615d2fe238668c01d358e04f8f5fd7fb96f092b3be0a7e2f0e249e2ddd",
+      "note": "Fresh definition approval for the user-authorized audited reopen after valid non-semantic review corrections; prior approval history preserved."
+    },
+    {
+      "gate": "definition",
+      "actor": "user:0xLeif",
+      "timestamp": 1783953099,
+      "digest": "1d14858787ad58d63607f4928027461ab125b859b700b80eaaeae417f31eea3f",
+      "note": "Fresh definition approval for validated non-semantic review corrections; all prior approval history is preserved."
+    },
+    {
+      "gate": "acceptance",
+      "actor": "user:0xLeif",
+      "timestamp": 1783953159,
+      "digest": "ddc71c7aaa50bf13247ca0bc288e3487287497c45aaa7252a751890e1aefa4c8",
+      "note": "Fresh closing approval after committed-head native verification of the authorized non-semantic review corrections."
+    },
+    {
+      "gate": "definition",
+      "actor": "user:0xLeif",
+      "timestamp": 1783957192,
+      "digest": "1d14858787ad58d63607f4928027461ab125b859b700b80eaaeae417f31eea3f",
+      "note": "Fresh definition approval under explicit audit-risk authorization; prior approval history preserved and current corrected artifacts reviewed."
+    },
+    {
+      "gate": "acceptance",
+      "actor": "user:0xLeif",
+      "timestamp": 1783957826,
+      "digest": "6acddccb0f6101badaf9bf89213ffbddfc543d15c3348d114aa1a126b9f9a1bd",
+      "note": "Fresh closing approval under explicit audit-risk authorization after re-verification against the final accepted review-correction workspace."
+    },
+    {
+      "gate": "definition",
+      "actor": "user:0xLeif",
+      "timestamp": 1783958468,
+      "digest": "1d14858787ad58d63607f4928027461ab125b859b700b80eaaeae417f31eea3f",
+      "note": "Fresh definition approval after the authorized state-only reopen against the final corrected Bridge workspace; prior approval history is preserved."
+    },
+    {
+      "gate": "acceptance",
+      "actor": "user:0xLeif",
+      "timestamp": 1783958481,
+      "digest": "4ecf790a453705275f8bbf23cbf0dea522b3cafcb2362b78c3daa5e9aca627c8",
+      "note": "Accepted after fresh verification against the final corrected Bridge workspace."
     }
   ]
 }

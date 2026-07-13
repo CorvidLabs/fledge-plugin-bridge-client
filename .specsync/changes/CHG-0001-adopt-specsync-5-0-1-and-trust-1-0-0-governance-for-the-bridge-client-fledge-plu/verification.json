@@ -1,9 +1,9 @@
 {
-  "timestamp": 1783927459,
-  "commit": "f500e2f0b68d085efab523475fea8fbe5aa96a1d",
-  "contract_digest": "c09709615d2fe238668c01d358e04f8f5fd7fb96f092b3be0a7e2f0e249e2ddd",
-  "workspace_digest": "54b173a6f22cbc9704da10bd10ce1493befae14d14740ac7b95664cd95b2b73a",
-  "acceptance_input_digest": "f491546ea4d96d0b4437101d82463345f02cf86c2617eae1a943a44850a6e833",
+  "timestamp": 1783958481,
+  "commit": "b3188af3531755550e9fce0e5458c57cbdb55f0d",
+  "contract_digest": "1d14858787ad58d63607f4928027461ab125b859b700b80eaaeae417f31eea3f",
+  "workspace_digest": "429a76cb9d4e1d542d58d77d437711d79ab66334e303e5ff7bccec472e89f023",
+  "acceptance_input_digest": "647d47d8ceb84295ca513afaf7132649ce5efeee4ce4028327d6a9ff9ab44b3a",
   "passed": true,
   "commands": [
     {
@@ -12,5 +12,8 @@
       "exit_code": 0
     }
   ],
-  "requirement_ids": []
+  "requirement_ids": [
+    "REQ-bridge-client-003",
+    "REQ-bridge-client-004"
+  ]
 }

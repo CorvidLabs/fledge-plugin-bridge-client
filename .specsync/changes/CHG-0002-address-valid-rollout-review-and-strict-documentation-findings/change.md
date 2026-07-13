@@ -17,10 +17,10 @@ Address valid rollout review and strict documentation findings
 
 ## Acceptance Criteria
 
-- Generated guidance is structurally correct
+- Generated guidance and lifecycle path coverage are structurally correct
 - review findings are addressed
 - and Bridge client ShellCheck and smoke verification remain green.
 
 ## No-spec Rationale
 
-Generated agent guidance places companion-file instructions under the correct section without changing Bridge client behavior.
+Generated agent commands, section labels, command names, and lifecycle path coverage are corrected without changing Bridge client behavior.

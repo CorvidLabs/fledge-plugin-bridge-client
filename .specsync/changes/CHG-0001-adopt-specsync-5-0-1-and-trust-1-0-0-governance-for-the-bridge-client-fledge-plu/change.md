@@ -13,7 +13,7 @@ Adopt SpecSync 5.0.1 and Trust 1.0.0 governance for the Bridge client Fledge plu
 
 ## Affected Canonical Specs
 
-- None
+- `bridge-client`
 
 ## Acceptance Criteria
 
@@ -21,4 +21,4 @@ Adopt SpecSync 5.0.1 and Trust 1.0.0 governance for the Bridge client Fledge plu
 
 ## No-spec Rationale
 
-This governance adoption documents existing Bridge client behavior and verification policy without changing its runtime contract.
+Not applicable

@@ -1,0 +1,67 @@
+{
+  "approvals": [
+    {
+      "gate": "definition",
+      "actor": "user:0xLeif",
+      "timestamp": 1783957192,
+      "digest": "c0be6adf79f7e98851cc7f5fd82abef62bfbe0d59fc898b6fcab23627bf07f8c",
+      "note": "Fresh definition approval under explicit audit-risk authorization; prior approval history preserved and current corrected artifacts reviewed."
+    },
+    {
+      "gate": "definition",
+      "actor": "user:0xLeif",
+      "timestamp": 1783957606,
+      "digest": "1b3687fc4af3098214e53ee66573dd0b331254a3076a85de33c845aadd48f5da",
+      "note": "Fresh definition approval after truthful metadata-only no-spec reclassification; no behavior or requirement change is claimed."
+    },
+    {
+      "gate": "acceptance",
+      "actor": "user:0xLeif",
+      "timestamp": 1783957756,
+      "digest": "09126a9cfb40d2041671cfa5ce0ac1e9537aad6fe034785d5de3b6ca216efcc2",
+      "note": "Closing approval recorded after committed-head native verification of the audited no-semantic-change correction."
+    },
+    {
+      "gate": "definition",
+      "actor": "user:0xLeif",
+      "timestamp": 1783958077,
+      "digest": "1b3687fc4af3098214e53ee66573dd0b331254a3076a85de33c845aadd48f5da",
+      "note": "Fresh definition approval after the authorized state-only reopen; CHG3 remains a non-semantic Change Log metadata correction and prior approval history is preserved."
+    },
+    {
+      "gate": "acceptance",
+      "actor": "user:0xLeif",
+      "timestamp": 1783958107,
+      "digest": "c33d1d217752dd9f5b639de423b569e0c424beaa5d0f03990a8eebcef4240b03",
+      "note": "Accepted after fresh verification against the final CHG1/CHG2-accepted Bridge client working tree."
+    },
+    {
+      "gate": "definition",
+      "actor": "user:0xLeif",
+      "timestamp": 1783958375,
+      "digest": "1b3687fc4af3098214e53ee66573dd0b331254a3076a85de33c845aadd48f5da",
+      "note": "Final definition approval after removing the malformed duplicate Change Log row; the correction is now complete and prior approval history is preserved."
+    },
+    {
+      "gate": "acceptance",
+      "actor": "user:0xLeif",
+      "timestamp": 1783958422,
+      "digest": "4a3a364324e57f13b9bb1a7b5c72d7bc1dc2636906dbce6c892b643eee1f7769",
+      "note": "Accepted after fresh verification of the final corrected Bridge change-log table with the malformed duplicate removed."
+    },
+    {
+      "gate": "definition",
+      "actor": "user:0xLeif",
+      "timestamp": 1783958468,
+      "digest": "1b3687fc4af3098214e53ee66573dd0b331254a3076a85de33c845aadd48f5da",
+      "note": "Fresh definition approval after the authorized state-only reopen against the final corrected Bridge workspace; prior approval history is preserved."
+    },
+    {
+      "gate": "acceptance",
+      "actor": "user:0xLeif",
+      "timestamp": 1783958491,
+      "digest": "f31bf5f2f82ce0c98c3dad2842569cf257c159034a6e4bda1a6097ef67e450a5",
+      "note": "Accepted after fresh verification of the corrected Bridge change-log table with the malformed duplicate removed."
+    }
+  ]
+}

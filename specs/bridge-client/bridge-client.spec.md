@@ -1,6 +1,6 @@
 ---
 module: bridge-client
-version: 1
+version: 4
 status: active
 files:
   - bin/fledge-plugin-bridge-client
@@ -33,8 +33,8 @@ Send authenticated HTTP requests to corvid-agent for listing and controlling alr
 1. The client talks only to the configured corvid-agent HTTP API and never connects directly to the bridged machine.
 2. Authentication uses the optional bearer token without printing it.
 3. A single session is auto-selected; zero or multiple sessions require an explicit resolution.
-4. File paths, command text, working directories, and content are JSON-encoded before transport.
-5. Remote execution propagates the reported exit code.
+4. Payloads are serialized as JSON before transport; write and exec preserve user-controlled fields, while read and list currently require paths without apostrophes.
+5. Formatted remote execution propagates the reported exit code; raw JSON mode passes the server response through after a successful HTTP request.
 
 ## Behavioral Examples
 
@@ -52,7 +52,8 @@ Then the client selects that session, sends a `file.read` request, and prints re
 | No sessions | Automatic selection finds a count of zero | Report that no bridge sessions are connected. |
 | Multiple sessions | Automatic selection finds more than one | List sessions and require `--session`. |
 | Missing command argument | A path or command is required | Print command-specific usage and exit non-zero. |
-| Remote error | Response contains an error field | Print it to stderr and exit non-zero. |
+| Remote error in formatted read, list, or exec output | A decoded response contains an `error` field | Print it to stderr and exit non-zero. |
+| Raw JSON response | `--json` is requested after a successful HTTP request | Pass the response through without interpreting remote error or exit-code fields. |
 
 ## Dependencies
 
@@ -65,3 +66,5 @@ Then the client selects that session, sends a `file.read` request, and prints re
 | Version | Date | Changes |
 |---------|------|---------|
 | 1 | 2026-07-12 | Document existing Bridge client behavior for SpecSync 5 adoption. |
+| 2 | 2026-07-13 | CHG-0001-adopt-specsync-5-0-1-and-trust-1-0-0-governance-for-the-bridge-client-fledge-plu: Adopt SpecSync 5.0.1 and Trust 1.0.0 governance for the Bridge client Fledge plugin |
+| 2026-07-13 | CHG-0001-adopt-specsync-5-0-1-and-trust-1-0-0-governance-for-the-bridge-client-fledge-plu: Adopt SpecSync 5.0.1 and Trust 1.0.0 governance for the Bridge client Fledge plugin |
