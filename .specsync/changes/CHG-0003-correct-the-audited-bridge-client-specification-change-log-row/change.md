@@ -13,7 +13,7 @@ Correct the audited Bridge client specification change-log row
 
 ## Affected Canonical Specs
 
-- `bridge-client`
+- None
 
 ## Acceptance Criteria
 
@@ -21,4 +21,4 @@ Correct the audited Bridge client specification change-log row
 
 ## No-spec Rationale
 
-Not applicable
+The correction repairs only the Change Log table metadata; it does not alter Bridge client behavior, requirements, or public contract.

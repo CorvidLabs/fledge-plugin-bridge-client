@@ -6,6 +6,13 @@
       "timestamp": 1783957192,
       "digest": "c0be6adf79f7e98851cc7f5fd82abef62bfbe0d59fc898b6fcab23627bf07f8c",
       "note": "Fresh definition approval under explicit audit-risk authorization; prior approval history preserved and current corrected artifacts reviewed."
+    },
+    {
+      "gate": "definition",
+      "actor": "user:0xLeif",
+      "timestamp": 1783957606,
+      "digest": "1b3687fc4af3098214e53ee66573dd0b331254a3076a85de33c845aadd48f5da",
+      "note": "Fresh definition approval after truthful metadata-only no-spec reclassification; no behavior or requirement change is claimed."
     }
   ]
 }

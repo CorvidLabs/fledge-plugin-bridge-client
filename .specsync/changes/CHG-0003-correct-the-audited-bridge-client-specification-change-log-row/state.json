@@ -8,15 +8,13 @@
   "state": "implementing",
   "base_commit": "b201d3c3d0ac67b360ac44e71c24d88db33ad4d3",
   "created_at": 1783954515,
-  "updated_at": 1783957192,
-  "affected_specs": [
-    "bridge-client"
-  ],
+  "updated_at": 1783957606,
+  "affected_specs": [],
   "affected_paths": [
     "specs/bridge-client/bridge-client.spec.md"
   ],
-  "no_spec_change": false,
-  "no_spec_change_rationale": null,
+  "no_spec_change": true,
+  "no_spec_change_rationale": "The correction repairs only the Change Log table metadata; it does not alter Bridge client behavior, requirements, or public contract.",
   "acceptance_criteria": [
     "The Bridge client Change Log row has all three table columns and records version 2 with the existing date and change description."
   ],
