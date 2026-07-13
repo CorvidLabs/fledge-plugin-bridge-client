@@ -48,6 +48,13 @@
       "timestamp": 1783957928,
       "digest": "b81a5ad42643f87fc50e89e9fbeaa261cf20d3ac665f295bbd7b741ed892a8ff",
       "note": "Accepted after fresh verification against the final CHG3-corrected Bridge client working tree."
+    },
+    {
+      "gate": "definition",
+      "actor": "user:0xLeif",
+      "timestamp": 1783958468,
+      "digest": "6b53827f15fe0ff1932eea2b28b4cb83697d45dcaecca0a8c074aa3478a88e0a",
+      "note": "Fresh definition approval after the authorized state-only reopen against the final corrected Bridge workspace; prior approval history is preserved."
     }
   ]
 }

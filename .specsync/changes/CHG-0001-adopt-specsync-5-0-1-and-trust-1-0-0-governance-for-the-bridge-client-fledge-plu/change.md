@@ -1,6 +1,6 @@
 ---
 id: CHG-0001-adopt-specsync-5-0-1-and-trust-1-0-0-governance-for-the-bridge-client-fledge-plu
-state: accepted
+state: implementing
 type: migration
 base_commit: 1ae7ccdb260dc60856b2339f5a7e7efe4f88e029
 ---
