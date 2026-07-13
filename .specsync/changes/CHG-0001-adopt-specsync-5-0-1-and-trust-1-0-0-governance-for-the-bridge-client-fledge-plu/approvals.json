@@ -1,3 +1,18 @@
 {
-  "approvals": []
+  "approvals": [
+    {
+      "gate": "definition",
+      "actor": "user:0xLeif",
+      "timestamp": 1783927441,
+      "digest": "c09709615d2fe238668c01d358e04f8f5fd7fb96f092b3be0a7e2f0e249e2ddd",
+      "note": "Approved under the user-authorized CorvidLabs organization-wide SpecSync 5.0.1 and Trust 1.0.0 rollout with explicit authorization to complete and merge."
+    },
+    {
+      "gate": "acceptance",
+      "actor": "user:0xLeif",
+      "timestamp": 1783927475,
+      "digest": "37523a27e9d0c91e4fab08eea9b604606d65e3c6a1d1e82365499d2d8bf40566",
+      "note": "Accepted after repository-native verification under the user-authorized CorvidLabs organization-wide rollout."
+    }
+  ]
 }

@@ -10,5 +10,3 @@ artifact: tasks
 - [x] Install all four integrations.
 - [x] Add ShellCheck and executable smoke lane.
 - [x] Add Trust policy and workflow.
-- [ ] Record definition and closing approvals.
-- [ ] Pass hosted checks.

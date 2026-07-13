@@ -1,6 +1,6 @@
 ---
 id: CHG-0001-adopt-specsync-5-0-1-and-trust-1-0-0-governance-for-the-bridge-client-fledge-plu
-state: draft
+state: accepted
 type: migration
 base_commit: 1ae7ccdb260dc60856b2339f5a7e7efe4f88e029
 ---
@@ -13,7 +13,7 @@ Adopt SpecSync 5.0.1 and Trust 1.0.0 governance for the Bridge client Fledge plu
 
 ## Affected Canonical Specs
 
-- `bridge-client`
+- None
 
 ## Acceptance Criteria
 
@@ -21,4 +21,4 @@ Adopt SpecSync 5.0.1 and Trust 1.0.0 governance for the Bridge client Fledge plu
 
 ## No-spec Rationale
 
-Not applicable
+This governance adoption documents existing Bridge client behavior and verification policy without changing its runtime contract.
