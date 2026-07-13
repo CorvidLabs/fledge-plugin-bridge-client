@@ -27,6 +27,13 @@
       "timestamp": 1783953099,
       "digest": "6b53827f15fe0ff1932eea2b28b4cb83697d45dcaecca0a8c074aa3478a88e0a",
       "note": "Fresh definition approval for validated non-semantic review corrections; all prior approval history is preserved."
+    },
+    {
+      "gate": "acceptance",
+      "actor": "user:0xLeif",
+      "timestamp": 1783953167,
+      "digest": "2b26ff9e67bcfb22f7bece6c047caa36bef3e32024cf339dd21345cfd0da2091",
+      "note": "Fresh closing approval after re-verification against the preceding accepted contract correction."
     }
   ]
 }
