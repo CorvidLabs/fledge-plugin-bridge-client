@@ -5,10 +5,10 @@
   "title": "Correct the audited Bridge client specification change-log row",
   "description": "Correct the audited Bridge client specification change-log row",
   "kind": "documentation",
-  "state": "implementing",
+  "state": "accepted",
   "base_commit": "b201d3c3d0ac67b360ac44e71c24d88db33ad4d3",
   "created_at": 1783954515,
-  "updated_at": 1783958375,
+  "updated_at": 1783958422,
   "affected_specs": [],
   "affected_paths": [
     "specs/bridge-client/bridge-client.spec.md"
